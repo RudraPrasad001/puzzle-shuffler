@@ -1,5 +1,6 @@
 import PuzzleImage from "./PuzzleImage";
 import { useState } from "react";
+import Rules from "./Rules";
 import img1 from './assets/1.png';
 import img2 from './assets/2.png';
 import img3 from './assets/3.png';
@@ -68,6 +69,10 @@ function Puzzle() {
             }
         }
     }
+    const [showRules, setShowRules] = useState(false);
+    const displayRules = () => {
+        setShowRules(prevState => !prevState);
+    };
 
     return (
         <div className={`container ${won ? 'win' : ''}`}>
@@ -79,7 +84,11 @@ function Puzzle() {
                     </div>
                 ))}
             </div>
+                
+            <div>
             <button onClick={shufflePuzzle}>Shuffle</button>
+            <button onClick={displayRules}>Rules</button></div>
+            {showRules && <Rules />}
         </div>
     );
 }
